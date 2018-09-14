@@ -1,0 +1,2 @@
+# VueAndCacheDemo
+将vue的H5文件下载到Document进行加载
