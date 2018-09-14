@@ -1,0 +1,15 @@
+PODS:
+  - Alamofire (4.6.0)
+  - SSZipArchive (2.1.1)
+
+DEPENDENCIES:
+  - Alamofire
+  - SSZipArchive
+
+SPEC CHECKSUMS:
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  SSZipArchive: 14401ade5f8e82aba1ff03e9f88e9de60937ae60
+
+PODFILE CHECKSUM: ca639a16542b22f57dda476c630477d0affe8178
+
+COCOAPODS: 1.4.0.rc.1
