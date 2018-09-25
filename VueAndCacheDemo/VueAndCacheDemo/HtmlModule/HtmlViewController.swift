@@ -47,23 +47,28 @@ class HtmlViewController: UIViewController {
     }
     
     private func loadUrl(){
-        //判断是否是最新版本
-        if self.isNewVersion() {
+        //判断是否有最新版本
+        if !self.isNewVersion() {
             //有新版本直接调用服务器链接
-            self.webView?.load(URLRequest.init(url: URL.init(string: (self.module?.url)!)!))
+            //由于vue.js的项目都是以#/index来结尾的,所以拼接的时候有点不一样
+            let url = (self.module?.url)!+"/#/index?token="+"vfjdji2132nkncskfnkwe"
+            self.webView?.load(URLRequest.init(url: URL.init(string: url)!))
         }else{
             //判断本地是否有缓存
             if self.isCacheInDocument() {
                 //调用本地html文件
-                let urlStr1 = HtmlModuleConfig.default.resourcePath+"/"+(self.module?.name)!+"/index.html"
-                let urlStr2 = HtmlModuleConfig.default.resourcePath+"/"+(self.module?.name)!
-                let urlPath = self.componentFileUrl(filePath: urlStr1, dictionary: ["token":"xcwrk424253mnknk24njnk"])
-                if urlPath != nil {
-                    self.webView?.loadFileURL(URL.init(fileURLWithPath: urlPath!), allowingReadAccessTo: URL.init(fileURLWithPath: urlStr2))
-                }
+                //本地调用会出现token无法获取，待整改
+                //本地调用会出现跨域问题无法访问网络，待整改
+            let urlStr1 = HtmlModuleConfig.default.resourcePath+"/"+(self.module?.name)!+"/#/index"
+            let urlStr2 = HtmlModuleConfig.default.resourcePath+"/"+(self.module?.name)!
+            let urlPath = self.componentFileUrl(filePath: urlStr1, dictionary: ["token":"vfjdji2132nkncskfnkwe"])
+            if urlPath != nil {
+                self.webView?.loadFileURL(urlPath!, allowingReadAccessTo: URL.init(fileURLWithPath: urlStr2))
+            }
             }else{
                 //无缓存直接调用服务器链接
-                let url = (self.module?.url)!+"?token='xcwrk424253mnknk24njnk'"
+                //由于vue.js的项目都是以#/index来结尾的,所以拼接的时候有点不一样
+                let url = (self.module?.url)!+"/#/index?token="+"vfjdji2132nkncskfnkwe"
                 self.webView?.load(URLRequest.init(url: URL.init(string: url)!))
             }
         }
@@ -95,7 +100,7 @@ class HtmlViewController: UIViewController {
      @param dictionary 拼接的参数
      @return 拼接后网页路径字符串
      */
-    private func componentFileUrl(filePath:String,dictionary:[String:String]) -> String?{
+    private func componentFileUrl(filePath:String,dictionary:[String:String]) -> URL?{
         let url = URL.init(fileURLWithPath: filePath, isDirectory: false)
         var urlComponents = URLComponents.init(url: url, resolvingAgainstBaseURL: false)
         var mutArray:Array = [URLQueryItem]()
@@ -106,7 +111,7 @@ class HtmlViewController: UIViewController {
         urlComponents?.queryItems = mutArray
         // urlComponents.URL  返回拼接后的URL
         // urlComponents.string 返回拼接后的String
-        return urlComponents?.string
+        return urlComponents?.url
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -148,7 +153,7 @@ extension HtmlViewController : WKNavigationDelegate{
         self.progressView?.isHidden = true
         //判断本地是否有缓存
         if self.isCacheInDocument() {
-            //有缓存判断缓存的是否为最新版本,如果不为最新版本则下载最新版本
+            //有缓存判断缓存的是否是最新版本,如果不为最新版本则下载最新版本
             if !self.isNewVersion() {
                 HtmlDownloadManager.default.download(downloadUrl: (self.module?.downloadUrl)!, name: (self.module?.name)!, version: (self.module?.version)!)
             }

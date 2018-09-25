@@ -13,23 +13,33 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.navigationItem.title = "首页"
+        self.view.backgroundColor = UIColor.white
+        
+        let button = UIButton()
+        button.frame = CGRect.init(x: 100, y: 200, width: 200, height: 100)
+        button.setTitle("模块一", for: .normal)
+        button.backgroundColor = UIColor.blue
+        button.layer.cornerRadius = 5
+        button.layer.masksToBounds = true
+        button.addTarget(self, action: #selector(click), for: .touchUpInside)
+        self.view.addSubview(button)
+    }
+    
+    @objc func click() {
+        let module = Module()
+        module.downloadUrl = "http://localhost/vue.zip"
+        module.name = "vue"
+        module.url = "http://localhost/vue"
+        module.version = "1.0"
+        let hVC = HtmlViewController()
+        hVC.module = module
+        self.navigationController?.pushViewController(hVC, animated: true)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -17,7 +17,6 @@
 		88723CF4214B57FC00A3678C /* VueAndCacheDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88723CF3214B57FC00A3678C /* VueAndCacheDemoUITests.swift */; };
 		88723D03214B58D900A3678C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88723D02214B58D900A3678C /* HomeViewController.swift */; };
 		88723D06214B58FA00A3678C /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88723D05214B58FA00A3678C /* Module.swift */; };
-		88723D08214B590D00A3678C /* HtmlDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88723D07214B590D00A3678C /* HtmlDownload.swift */; };
 		88723D0A214B591A00A3678C /* HtmlDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88723D09214B591A00A3678C /* HtmlDownloadManager.swift */; };
 		88723D0C214B592800A3678C /* HtmlModuleConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88723D0B214B592800A3678C /* HtmlModuleConfig.swift */; };
 		88723D0E214B596F00A3678C /* HtmlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88723D0D214B596F00A3678C /* HtmlViewController.swift */; };
@@ -58,7 +57,6 @@
 		88723CF5214B57FC00A3678C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88723D02214B58D900A3678C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		88723D05214B58FA00A3678C /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
-		88723D07214B590D00A3678C /* HtmlDownload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlDownload.swift; sourceTree = "<group>"; };
 		88723D09214B591A00A3678C /* HtmlDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlDownloadManager.swift; sourceTree = "<group>"; };
 		88723D0B214B592800A3678C /* HtmlModuleConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlModuleConfig.swift; sourceTree = "<group>"; };
 		88723D0D214B596F00A3678C /* HtmlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlViewController.swift; sourceTree = "<group>"; };
@@ -158,7 +156,6 @@
 			isa = PBXGroup;
 			children = (
 				88723D05214B58FA00A3678C /* Module.swift */,
-				88723D07214B590D00A3678C /* HtmlDownload.swift */,
 				88723D09214B591A00A3678C /* HtmlDownloadManager.swift */,
 				88723D0B214B592800A3678C /* HtmlModuleConfig.swift */,
 				88723D0D214B596F00A3678C /* HtmlViewController.swift */,
@@ -381,7 +378,6 @@
 				88723D06214B58FA00A3678C /* Module.swift in Sources */,
 				88723CD4214B57FC00A3678C /* AppDelegate.swift in Sources */,
 				88723D0C214B592800A3678C /* HtmlModuleConfig.swift in Sources */,
-				88723D08214B590D00A3678C /* HtmlDownload.swift in Sources */,
 				88723D03214B58D900A3678C /* HomeViewController.swift in Sources */,
 				88723D0E214B596F00A3678C /* HtmlViewController.swift in Sources */,
 			);
