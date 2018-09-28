@@ -50,26 +50,17 @@ class HtmlViewController: UIViewController {
         //判断是否有最新版本
         if !self.isNewVersion() {
             //有新版本直接调用服务器链接
-            //由于vue.js的项目都是以#/index来结尾的,所以拼接的时候有点不一样
-            let url = (self.module?.url)!+"/#/index?token="+"vfjdji2132nkncskfnkwe"
-            self.webView?.load(URLRequest.init(url: URL.init(string: url)!))
+            self.webView?.load(URLRequest.init(url: URL.init(string: (self.module?.url)!)!))
         }else{
             //判断本地是否有缓存
             if self.isCacheInDocument() {
                 //调用本地html文件
-                //本地调用会出现token无法获取，待整改
-                //本地调用会出现跨域问题无法访问网络，待整改
-            let urlStr1 = HtmlModuleConfig.default.resourcePath+"/"+(self.module?.name)!+"/#/index"
-            let urlStr2 = HtmlModuleConfig.default.resourcePath+"/"+(self.module?.name)!
-            let urlPath = self.componentFileUrl(filePath: urlStr1, dictionary: ["token":"vfjdji2132nkncskfnkwe"])
-            if urlPath != nil {
-                self.webView?.loadFileURL(urlPath!, allowingReadAccessTo: URL.init(fileURLWithPath: urlStr2))
-            }
+                let urlStr1 = HtmlModuleConfig.default.resourcePath+"/"+(self.module?.name)!+"/index.html"
+                let urlStr2 = HtmlModuleConfig.default.resourcePath+"/"+(self.module?.name)!
+                self.webView?.loadFileURL(URL.init(fileURLWithPath:urlStr1), allowingReadAccessTo: URL.init(fileURLWithPath: urlStr2))
             }else{
                 //无缓存直接调用服务器链接
-                //由于vue.js的项目都是以#/index来结尾的,所以拼接的时候有点不一样
-                let url = (self.module?.url)!+"/#/index?token="+"vfjdji2132nkncskfnkwe"
-                self.webView?.load(URLRequest.init(url: URL.init(string: url)!))
+                self.webView?.load(URLRequest.init(url: URL.init(string: (self.module?.url)!)!))
             }
         }
     }
@@ -100,6 +91,7 @@ class HtmlViewController: UIViewController {
      @param dictionary 拼接的参数
      @return 拼接后网页路径字符串
      */
+    /*
     private func componentFileUrl(filePath:String,dictionary:[String:String]) -> URL?{
         let url = URL.init(fileURLWithPath: filePath, isDirectory: false)
         var urlComponents = URLComponents.init(url: url, resolvingAgainstBaseURL: false)
@@ -113,6 +105,7 @@ class HtmlViewController: UIViewController {
         // urlComponents.string 返回拼接后的String
         return urlComponents?.url
     }
+    */
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "estimatedProgress" {
@@ -146,7 +139,8 @@ extension HtmlViewController : WKNavigationDelegate{
     }
     ///开始获取到网页内容时返回
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-        
+        //注入cookie
+        webView.evaluateJavaScript("document.cookie ='token=xfdkeqwc2vd3';") { (_, _) in}
     }
     ///页面加载完成之后调用
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {

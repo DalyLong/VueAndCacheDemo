@@ -30,7 +30,7 @@ class HomeViewController: UIViewController {
         let module = Module()
         module.downloadUrl = "http://localhost/vue.zip"
         module.name = "vue"
-        module.url = "http://localhost/vue"
+        module.url = "http://localhost/vue/#/index"
         module.version = "1.0"
         let hVC = HtmlViewController()
         hVC.module = module
